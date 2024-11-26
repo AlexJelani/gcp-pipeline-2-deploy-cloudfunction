@@ -1,11 +1,13 @@
 steps:
   # Create zip file containing function source code
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
+  - name: 'ubuntu'
+    entrypoint: bash
     args:
-      - '-c'
-      - |
-        zip function.zip main.py requirements.txt
+    - -c
+    - |
+      apt-get update && \
+      apt-get install -y zip && \
+      zip function.zip main.py requirements.txt
 
   # Deploy to Cloud Functions
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -25,5 +27,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
-timeout: '1800s'
-timeout: '1800s'  
+timeout: '1800s'timeout: '1800s'  
