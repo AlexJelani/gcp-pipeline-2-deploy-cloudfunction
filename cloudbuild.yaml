@@ -1,0 +1,24 @@
+steps:
+  # Create zip file containing function source code
+  - name: 'debian'
+    args: ['bash', '-c', 'apt-get update && apt-get install -y zip && zip -r function.zip main.py requirements.txt']
+
+  # Deploy to Cloud Functions
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+    - gcloud
+    - functions
+    - deploy
+    - my-function
+    - --gen2
+    - --runtime=python39
+    - --region=us-central1
+    - --source=function.zip
+    - --trigger-http
+    - --entry-point=main
+    - --allow-unauthenticated
+
+artifacts:
+  objects:
+    location: 'gs://${_ARTIFACT_BUCKET_NAME}/'
+    paths: ['function.zip']
