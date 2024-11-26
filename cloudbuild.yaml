@@ -1,16 +1,12 @@
 steps:
   # Create zip file containing function source code
-  - name: 'ubuntu'
-    entrypoint: bash
-    args:
-    - -c
-    - |
-      apt-get update && \
-      apt-get install -y zip && \
-      zip function.zip main.py requirements.txt
+  - name: 'alpine'
+    dir: 'cloud-function'
+    args: ['sh', '-c', 'ls -la && apk add zip && zip function.zip ./main.py ./requirements.txt']
 
   # Deploy to Cloud Functions
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    dir: 'cloud-function'
     args:
     - gcloud
     - functions
@@ -27,4 +23,5 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
+timeout: '1800s'
 timeout: '1800s' 
