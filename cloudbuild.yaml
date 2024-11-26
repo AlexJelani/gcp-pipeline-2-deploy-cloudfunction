@@ -21,4 +21,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
-timeout: '1800s'  logging: CLOUD_LOGGING_ONLY
+timeout: '1800s'  
