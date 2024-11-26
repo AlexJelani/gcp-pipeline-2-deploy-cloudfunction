@@ -17,17 +17,8 @@ steps:
     - --trigger-http
     - --entry-point=function_1_v10
     - --allow-unauthenticated
-artifacts:
-  objects:
-    location: 'gs://${_ARTIFACT_BUCKET_NAME}/'
-    paths: ['function.zip']
-
-# Specify the Cloud Storage bucket for logs
-logsBucket: 'gs://devops-442409_cloudbuild/logs'
 
 options:
   logging: CLOUD_LOGGING_ONLY
-  machineType: 'N1_HIGHCPU_8'
 
-timeout: '1800s'
-  logging: CLOUD_LOGGING_ONLY
+timeout: '1800s'  logging: CLOUD_LOGGING_ONLY
