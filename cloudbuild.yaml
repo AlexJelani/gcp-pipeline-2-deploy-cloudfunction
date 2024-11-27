@@ -1,14 +1,7 @@
 steps:
-  # Create zip file containing function source code
-  - name: 'alpine'
-    dir: 'cloud-function'
-    args: ['sh', '-c', 'ls -la && apk add zip && zip function.zip ./main.py ./requirements.txt']
-
   # Deploy to Cloud Functions
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    dir: 'cloud-function'
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
-    - gcloud
     - functions
     - deploy
     - function-1-v10
@@ -22,5 +15,3 @@ steps:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-timeout: '1800s'
