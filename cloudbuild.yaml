@@ -8,7 +8,7 @@ steps:
     - --gen2
     - --runtime=python39
     - --region=us-central1
-    - --source=function-source.zip
+    - --source=function-source
     - --trigger-http
     - --entry-point=function_1_v10
     - --allow-unauthenticated
